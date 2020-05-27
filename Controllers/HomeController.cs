@@ -63,7 +63,6 @@ namespace BookStore_API.Controllers
         public void Delete(int id)
         {
             _logger.LogWarn("This is a warning.");
-
         }
     }
 }

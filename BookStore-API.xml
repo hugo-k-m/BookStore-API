@@ -22,5 +22,86 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:BookStore_API.Data.Author">
+            <summary>
+            Represents a single author.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.Data.Author.Id">
+            <summary>
+            Gets or sets the unique identifier for the author.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.Data.Author.Firstname">
+            <summary>
+            Gets or sets this author's first name.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.Data.Author.Lastname">
+            <summary>
+            Gets or sets this author's surname.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.Data.Author.Bio">
+            <summary>
+            Gets or sets this author's bio.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.Data.Author.Books">
+            <summary>
+            Gets or sets a list of all the book objects associated with this
+            author.
+            </summary>
+        </member>
+        <member name="T:BookStore_API.Data.Book">
+            <summary>
+            Represents a single book.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.Data.Book.Id">
+            <summary>
+            Gets or sets the unique identifier for this book.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.Data.Book.Title">
+            <summary>
+            Gets or sets the title of this book.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.Data.Book.Year">
+            <summary>
+            Gets or sets the year this book was published.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.Data.Book.Isbn">
+            <summary>
+            Gets or sets the ISBN for this book.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.Data.Book.Summary">
+            <summary>
+            Gets or sets the summary about this book.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.Data.Book.Image">
+            <summary>
+            Gets or sets the url pointing to the location of this book's image.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.Data.Book.Price">
+            <summary>
+            Gets or sets the price of this book.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.Data.Book.AuthorId">
+            <summary>
+            Gets or sets the unique identifier of the author of this book.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.Data.Book.Author">
+            <summary>
+            Gets or sets the author object of this book.
+            </summary>
+        </member>
     </members>
 </doc>
