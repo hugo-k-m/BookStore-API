@@ -1,12 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace BookStore_API.Data
+﻿namespace BookStore_API.DTOs
 {
-    /// <summary>
-    /// Represents a single book.
-    /// </summary>
-    [Table("Books")]
-    public partial class Book
+    public class BookDTO
     {
         /// <summary>
         /// Gets or sets the unique identifier for this book.
@@ -51,6 +45,6 @@ namespace BookStore_API.Data
         /// <summary>
         /// Gets or sets the author object of this book.
         /// </summary>
-        public virtual Author Author { get; set; }    
+        public virtual AuthorDTO Author { get; set; }
     }
 }

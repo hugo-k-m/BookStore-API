@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BookStore_API.Contracts;
 using BookStore_API.Services;
+using AutoMapper;
+using BookStore_API.Mappings;
 
 namespace BookStore_API
 {
@@ -32,6 +34,7 @@ namespace BookStore_API
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            // CORS
             services.AddCors(o => {
                 o.AddPolicy(
                     "CorsPolicy",
@@ -40,7 +43,11 @@ namespace BookStore_API
                     .AllowAnyHeader()
                 );
             });
-            
+
+            // Automapper
+            services.AddAutoMapper(typeof(Maps));
+
+            // Swagger
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc(
                     "v1",
@@ -56,6 +63,7 @@ namespace BookStore_API
                 c.IncludeXmlComments(xpath);
             });
 
+            // Logger
             services.AddSingleton<ILoggerService, LoggerService>();
 
             services.AddControllers();
