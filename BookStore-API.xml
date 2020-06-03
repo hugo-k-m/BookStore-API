@@ -4,6 +4,49 @@
         <name>BookStore-API</name>
     </assembly>
     <members>
+        <member name="T:BookStore_API.Contracts.IRepositoryBase`1">
+            <summary>
+            Defines methods to perform generic CRUD operations on the records
+            stored in the database.
+            </summary>
+        </member>
+        <member name="M:BookStore_API.Contracts.IRepositoryBase`1.FindAll">
+            <summary>
+            Returns all records of the class type/all records from a table
+            in the database.
+            </summary>
+        </member>
+        <member name="M:BookStore_API.Contracts.IRepositoryBase`1.FindById(System.Int32)">
+            <summary>
+            Returns the class record/row from the relative database table that
+            corresponds with the given unique identifier.
+            </summary>
+        </member>
+        <member name="M:BookStore_API.Contracts.IRepositoryBase`1.Create(`0)">
+            <summary>
+            Returns true if the given entity was successfully created in the
+            database. The method returns false otherwise.
+            </summary>
+        </member>
+        <member name="M:BookStore_API.Contracts.IRepositoryBase`1.Update(`0)">
+            <summary>
+            Returns true if the given entity was successfully updated in the
+            database. The method returns false otherwise.
+            </summary>
+        </member>
+        <member name="M:BookStore_API.Contracts.IRepositoryBase`1.Delete(`0)">
+            <summary>
+            Returns true if the given entity was successfully deleted from the
+            database. The method returns false otherwise.
+            </summary>
+        </member>
+        <member name="M:BookStore_API.Contracts.IRepositoryBase`1.Save">
+            <summary>
+            This method applies entity framework changes to the database records.
+            If any changes have been made then it returns true. If no changes
+            were made then it returns false.
+            </summary>
+        </member>
         <member name="T:BookStore_API.Controllers.HomeController">
             <summary>
             This is a test API controller.
