@@ -52,6 +52,12 @@
             Endpoint used to interact with the Authors in the book store's database.
             </summary>
         </member>
+        <member name="M:BookStore_API.Controllers.AuthorsController.GetAuthors">
+            <summary>
+            Get all authors.
+            </summary>
+            <returns>List of authors.</returns>
+        </member>
         <member name="T:BookStore_API.Controllers.HomeController">
             <summary>
             This is a test API controller.
