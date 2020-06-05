@@ -1,5 +1,8 @@
 ﻿namespace BookStore_API.DTOs
 {
+    /// <summary>
+    /// Book data transfer object.
+    /// </summary>
     public class BookDTO
     {
         /// <summary>

@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookStore_API.DTOs
 {
+    /// <summary>
+    /// Author data transfer object.
+    /// </summary>
     public class AuthorDTO
     {
         /// <summary>
@@ -29,5 +33,28 @@ namespace BookStore_API.DTOs
         /// author.
         /// </summary>
         public virtual IList<BookDTO> Books { get; set; }
+    }
+
+    /// <summary>
+    /// Author create data transfer object..
+    /// </summary>
+    public class AuthorCreateDTO
+    {
+        /// <summary>
+        /// Gets or sets this author's first name.
+        /// </summary>
+        [Required]
+        public string Firstname { get; set; }
+
+        /// <summary>
+        /// Gets or sets this author's surname.
+        /// </summary>
+        [Required]
+        public string Lastname { get; set; }
+
+        /// <summary>
+        /// Gets or sets this author's bio.
+        /// </summary>
+        public string Bio { get; set; }
     }
 }

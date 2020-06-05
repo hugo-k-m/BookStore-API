@@ -84,11 +84,54 @@ namespace BookStore_API.Controllers
             }
         }
 
+        /// <summary>
+        /// Create an author.
+        /// </summary>
+        /// <param name="authorDTO"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Create([FromBody] AuthorCreateDTO authorDTO)
+        {
+            try
+            {
+                _logger.LogInfo($"Author submission attempted.");
+                
+                if (authorDTO == null)
+                {
+                    _logger.LogWarn($"Empty request was submitted.");
+                    return BadRequest(ModelState);
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogWarn($"Author data incomplete.");
+                    return BadRequest(ModelState);
+                }
+                
+                Author author = _mapper.Map<Author>(authorDTO);
+                bool isSuccess = await _authorRepository.Create(author);
+                
+                if (!isSuccess)
+                {
+                    return InternalError($"Author creation failed.");
+                }
+
+                _logger.LogInfo("Author Created");
+                return Created("Create", new { author });
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{e.Message} - {e.InnerException}");
+            }
+        }
+
         private ObjectResult InternalError(string message)
         {
             _logger.LogError(message);
             return StatusCode(500, "Something went wrong. Please contact the Administrator.");
-
         }
     }
 }

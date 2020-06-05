@@ -58,6 +58,20 @@
             </summary>
             <returns>List of authors.</returns>
         </member>
+        <member name="M:BookStore_API.Controllers.AuthorsController.GetAuthor(System.Int32)">
+            <summary>
+            Get an author by their Id.
+            </summary>
+            <param name="Id"></param>
+            <returns>An author's record.</returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.AuthorsController.Create(BookStore_API.DTOs.AuthorCreateDTO)">
+            <summary>
+            Create an author.
+            </summary>
+            <param name="authorDTO"></param>
+            <returns></returns>
+        </member>
         <member name="T:BookStore_API.Controllers.HomeController">
             <summary>
             This is a test API controller.
@@ -157,6 +171,11 @@
             Gets or sets the author object of this book.
             </summary>
         </member>
+        <member name="T:BookStore_API.DTOs.AuthorDTO">
+            <summary>
+            Author data transfer object.
+            </summary>
+        </member>
         <member name="P:BookStore_API.DTOs.AuthorDTO.Id">
             <summary>
             Gets or sets the unique identifier for the author.
@@ -181,6 +200,31 @@
             <summary>
             Gets or sets a list of all the book objects associated with this
             author.
+            </summary>
+        </member>
+        <member name="T:BookStore_API.DTOs.AuthorCreateDTO">
+            <summary>
+            Author create data transfer object..
+            </summary>
+        </member>
+        <member name="P:BookStore_API.DTOs.AuthorCreateDTO.Firstname">
+            <summary>
+            Gets or sets this author's first name.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.DTOs.AuthorCreateDTO.Lastname">
+            <summary>
+            Gets or sets this author's surname.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.DTOs.AuthorCreateDTO.Bio">
+            <summary>
+            Gets or sets this author's bio.
+            </summary>
+        </member>
+        <member name="T:BookStore_API.DTOs.BookDTO">
+            <summary>
+            Book data transfer object.
             </summary>
         </member>
         <member name="P:BookStore_API.DTOs.BookDTO.Id">
