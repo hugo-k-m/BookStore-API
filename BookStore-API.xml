@@ -67,8 +67,16 @@
         </member>
         <member name="M:BookStore_API.Controllers.AuthorsController.Create(BookStore_API.DTOs.AuthorCreateDTO)">
             <summary>
-            Create an author.
+            Creates an author.
             </summary>
+            <param name="author"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.AuthorsController.Update(System.Int32,BookStore_API.DTOs.AuthorUpdateDTO)">
+            <summary>
+            
+            </summary>
+            <param name="Id"></param>
             <param name="authorDTO"></param>
             <returns></returns>
         </member>
@@ -204,7 +212,7 @@
         </member>
         <member name="T:BookStore_API.DTOs.AuthorCreateDTO">
             <summary>
-            Author create data transfer object..
+            Author create data transfer object.
             </summary>
         </member>
         <member name="P:BookStore_API.DTOs.AuthorCreateDTO.Firstname">
@@ -218,6 +226,31 @@
             </summary>
         </member>
         <member name="P:BookStore_API.DTOs.AuthorCreateDTO.Bio">
+            <summary>
+            Gets or sets this author's bio.
+            </summary>
+        </member>
+        <member name="T:BookStore_API.DTOs.AuthorUpdateDTO">
+            <summary>
+            Author update data transfer object.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.DTOs.AuthorUpdateDTO.Id">
+            <summary>
+            Gets or sets the unique identifier for the author.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.DTOs.AuthorUpdateDTO.Firstname">
+            <summary>
+            Gets or sets this author's first name.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.DTOs.AuthorUpdateDTO.Lastname">
+            <summary>
+            Gets or sets this author's surname.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.DTOs.AuthorUpdateDTO.Bio">
             <summary>
             Gets or sets this author's bio.
             </summary>

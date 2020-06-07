@@ -85,9 +85,9 @@ namespace BookStore_API.Controllers
         }
 
         /// <summary>
-        /// Create an author.
+        /// Creates an author.
         /// </summary>
-        /// <param name="authorDTO"></param>
+        /// <param name="author"></param>
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -121,6 +121,51 @@ namespace BookStore_API.Controllers
 
                 _logger.LogInfo("Author Created");
                 return Created("Create", new { author });
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{e.Message} - {e.InnerException}");
+            }
+        }
+
+        /// <summary>
+        /// Updates and author's record.
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="authorDTO"></param>
+        /// <returns></returns>
+        [HttpPut("{Id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Update(int Id, [FromBody] AuthorUpdateDTO authorDTO)
+        {
+            try
+            {
+                _logger.LogInfo($"Author with Id: {Id} update attempted");
+
+                if (Id < 1 || authorDTO == null || Id != authorDTO.Id)
+                {
+                    _logger.LogWarn($"Author update failed with bad data");
+                    return BadRequest();
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogWarn($"Author data was incomplete");
+                    return BadRequest(ModelState);
+                }
+
+                Author author = _mapper.Map<Author>(authorDTO);
+                bool isSuccess = await _authorRepository.Update(author);
+
+                if (!isSuccess)
+                {
+                    return InternalError($"Update operation failed.");
+                }
+
+                _logger.LogInfo($"Author with Id: {Id} successfully updated");
+                return NoContent();
             }
             catch (Exception e)
             {
