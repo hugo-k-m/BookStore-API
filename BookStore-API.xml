@@ -28,6 +28,12 @@
             database. The method returns false otherwise.
             </summary>
         </member>
+        <member name="M:BookStore_API.Contracts.IRepositoryBase`1.isExists(System.Int32)">
+            <summary>
+            Checks whether or not the database contains a record corresponding
+            with the Id input.
+            </summary>
+        </member>
         <member name="M:BookStore_API.Contracts.IRepositoryBase`1.Update(`0)">
             <summary>
             Returns true if the given entity was successfully updated in the
@@ -74,10 +80,17 @@
         </member>
         <member name="M:BookStore_API.Controllers.AuthorsController.Update(System.Int32,BookStore_API.DTOs.AuthorUpdateDTO)">
             <summary>
-            
+            Updates and author's record.
             </summary>
             <param name="Id"></param>
             <param name="authorDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.AuthorsController.Delete(System.Int32)">
+            <summary>
+            Removes an author by Id.
+            </summary>
+            <param name="Id"></param>
             <returns></returns>
         </member>
         <member name="T:BookStore_API.Controllers.HomeController">

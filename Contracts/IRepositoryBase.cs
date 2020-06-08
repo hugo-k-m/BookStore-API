@@ -28,6 +28,12 @@ namespace BookStore_API.Contracts
         Task<bool> Create(T entity);
 
         /// <summary>
+         /// Checks whether or not the database contains a record corresponding
+         /// with the Id input.
+         /// </summary>
+         Task<bool> isExists(int Id);
+
+        /// <summary>
         /// Returns true if the given entity was successfully updated in the
         /// database. The method returns false otherwise.
         /// </summary>

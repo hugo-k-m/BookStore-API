@@ -150,6 +150,15 @@ namespace BookStore_API.Controllers
                     return BadRequest();
                 }
 
+                bool isExists = await _authorRepository.isExists(Id);
+
+                if (!isExists)
+                {
+                    _logger.LogWarn($"Author with Id: {Id} was not found");
+                    return NotFound();
+                }
+
+
                 if (!ModelState.IsValid)
                 {
                     _logger.LogWarn($"Author data was incomplete");
@@ -165,6 +174,52 @@ namespace BookStore_API.Controllers
                 }
 
                 _logger.LogInfo($"Author with Id: {Id} successfully updated");
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{e.Message} - {e.InnerException}");
+            }
+        }
+
+        /// <summary>
+        /// Removes an author by Id.
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        [HttpDelete("{Id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete(int Id)
+        {
+            try
+            {
+                _logger.LogInfo($"Author with Id: {Id} delete attempted");
+
+                if (Id < 1)
+                {
+                    _logger.LogWarn($"Author delete failed with bad data");
+                    return BadRequest();
+                }
+
+                bool isExists = await _authorRepository.isExists(Id);
+
+                if (!isExists)
+                {
+                    _logger.LogWarn($"Author with Id: {Id} was not found");
+                    return NotFound();
+                }
+
+                Author author = await _authorRepository.FindById(Id);            
+                bool isSuccess = await _authorRepository.Delete(author);
+
+                if (!isSuccess)
+                {
+                    return InternalError($"Author delete failed");
+                }
+
+                _logger.LogInfo($"Author with Id: {Id} successfully deleted");
                 return NoContent();
             }
             catch (Exception e)
