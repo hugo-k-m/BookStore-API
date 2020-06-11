@@ -74,12 +74,14 @@ namespace BookStore_API.Controllers
             {
                 _logger.LogInfo($"{location}: Attempted call for Id: {Id}.");
                 Author author = await _authorRepository.FindById(Id);
+
                 if (author == null)
                 {
                     _logger.LogWarn($"{location}: Failed to retrieve record with Id: {Id}.");
 
                     return NotFound();
                 }
+
                 AuthorDTO response = _mapper.Map<AuthorDTO>(author);
                 _logger.LogInfo($"{location}: Successful got record with Id: {Id}.");
 
@@ -102,19 +104,23 @@ namespace BookStore_API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Create([FromBody] AuthorCreateDTO authorDTO)
         {
+            string location = GetControllerActionNames();
+
             try
             {
-                _logger.LogInfo($"Author submission attempted.");
+                _logger.LogInfo($"{location}: Create attempted.");
                 
                 if (authorDTO == null)
                 {
-                    _logger.LogWarn($"Empty request was submitted.");
+                    _logger.LogWarn($"{location}: Empty request was submitted.");
+
                     return BadRequest(ModelState);
                 }
 
                 if (!ModelState.IsValid)
                 {
-                    _logger.LogWarn($"Author data incomplete.");
+                    _logger.LogWarn($"{location}: Data was incomplete.");
+
                     return BadRequest(ModelState);
                 }
                 
@@ -123,15 +129,17 @@ namespace BookStore_API.Controllers
                 
                 if (!isSuccess)
                 {
-                    return InternalError($"Author creation failed.");
+                    return InternalError($"{location}: Creation failed.");
                 }
 
-                _logger.LogInfo("Author Created");
+                _logger.LogInfo($"{location}: Creation was successful.");
+                _logger.LogInfo($"{location}: {author}");
+
                 return Created("Create", new { author });
             }
             catch (Exception e)
             {
-                return InternalError($"{e.Message} - {e.InnerException}");
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
             }
         }
 

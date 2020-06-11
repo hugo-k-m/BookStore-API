@@ -91,6 +91,56 @@ namespace BookStore_API.Controllers
             }
         }
 
+        /// <summary>
+        /// Creates a new book.
+        /// </summary>
+        /// <param name="bookDTO"></param>
+        /// <returns>Book object.</returns>
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Create([FromBody] BookCreateDTO bookDTO)
+        {
+            string location = GetControllerActionNames();
+
+            try
+            {
+                _logger.LogInfo($"{location}: Create attempted.");
+
+                if (bookDTO == null)
+                {
+                    _logger.LogWarn($"{location}: Empty request was submitted.");
+
+                    return BadRequest(ModelState);
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogWarn($"{location}: Data was incomplete.");
+
+                    return BadRequest(ModelState);
+                }
+
+                Book book = _mapper.Map<Book>(bookDTO);
+                bool isSuccess = await _bookRepository.Create(book);
+
+                if (!isSuccess)
+                {
+                    return InternalError($"{location}: Creation failed.");
+                }
+
+                _logger.LogInfo($"{location}: Creation was successful.");
+                _logger.LogInfo($"{location}: {book}");
+
+                return Created("Create", new { book } );
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
+            }
+        }
+
         private string GetControllerActionNames()
         {
             string controller = ControllerContext.ActionDescriptor.ControllerName;

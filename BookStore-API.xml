@@ -111,6 +111,13 @@
             <param name="Id"></param>
             <returns>A book record.</returns>
         </member>
+        <member name="M:BookStore_API.Controllers.BooksController.Create(BookStore_API.DTOs.BookCreateDTO)">
+            <summary>
+            Creates a new book.
+            </summary>
+            <param name="bookDTO"></param>
+            <returns>Book object.</returns>
+        </member>
         <member name="T:BookStore_API.Controllers.HomeController">
             <summary>
             This is a test API controller.
@@ -334,6 +341,46 @@
         <member name="P:BookStore_API.DTOs.BookDTO.Author">
             <summary>
             Gets or sets the author object of this book.
+            </summary>
+        </member>
+        <member name="T:BookStore_API.DTOs.BookCreateDTO">
+            <summary>
+            Book create data transfer object.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.DTOs.BookCreateDTO.Title">
+            <summary>
+            Gets or sets the title of this book.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.DTOs.BookCreateDTO.Year">
+            <summary>
+            Gets or sets the year this book was published.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.DTOs.BookCreateDTO.Isbn">
+            <summary>
+            Gets or sets the ISBN for this book.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.DTOs.BookCreateDTO.Summary">
+            <summary>
+            Gets or sets the summary about this book.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.DTOs.BookCreateDTO.Image">
+            <summary>
+            Gets or sets the url pointing to the location of this book's image.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.DTOs.BookCreateDTO.Price">
+            <summary>
+            Gets or sets the price of this book.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.DTOs.BookCreateDTO.AuthorId">
+            <summary>
+            Gets or sets the unique identifier of the author of this book.
             </summary>
         </member>
     </members>
