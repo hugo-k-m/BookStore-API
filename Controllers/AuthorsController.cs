@@ -40,17 +40,20 @@ namespace BookStore_API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAuthors()
         {
+            string location = GetControllerActionNames();
+
             try
             {
-                _logger.LogInfo("Attempted to get all authors.");
+                _logger.LogInfo($"{location}: Attempted call.");
                 IList<Author> authors = await _authorRepository.FindAll();
                 IList<AuthorDTO> response = _mapper.Map<IList<AuthorDTO>>(authors);
-                _logger.LogInfo("Successfully got all authors.");
+                _logger.LogInfo($"{location}: Successful.");
+
                 return Ok(response);    
             }
             catch (Exception e)
             {
-                return InternalError($"{e.Message} - {e.InnerException}");
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
             }
         }
 
@@ -65,22 +68,26 @@ namespace BookStore_API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAuthor(int Id)
         {
+            string location = GetControllerActionNames();
+
             try
             {
-                _logger.LogInfo("Attempted to get author with Id:{Id}");
+                _logger.LogInfo($"{location}: Attempted call for Id: {Id}.");
                 Author author = await _authorRepository.FindById(Id);
                 if (author == null)
                 {
-                    _logger.LogWarn($"Author with Id:{Id} was not found.");
+                    _logger.LogWarn($"{location}: Failed to retrieve record with Id: {Id}.");
+
                     return NotFound();
                 }
                 AuthorDTO response = _mapper.Map<AuthorDTO>(author);
-                _logger.LogInfo($"Successfully got Id:{Id}");
+                _logger.LogInfo($"{location}: Successful got record with Id: {Id}.");
+
                 return Ok(response);
             }
             catch (Exception e)
             {
-                return InternalError($"{e.Message} - {e.InnerException}");
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
             }
         }
 
@@ -226,6 +233,14 @@ namespace BookStore_API.Controllers
             {
                 return InternalError($"{e.Message} - {e.InnerException}");
             }
+        }
+
+        private string GetControllerActionNames()
+        {
+            string controller = ControllerContext.ActionDescriptor.ControllerName;
+            string action = ControllerContext.ActionDescriptor.ActionName;
+            
+            return $"{controller} - {action}";
         }
 
         private ObjectResult InternalError(string message)

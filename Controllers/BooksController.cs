@@ -76,6 +76,7 @@ namespace BookStore_API.Controllers
                 if (book == null)
                 {
                     _logger.LogWarn($"{location}: Failed to retrieve record with Id: {Id}.");
+                    
                     return NotFound();
                 }
 
