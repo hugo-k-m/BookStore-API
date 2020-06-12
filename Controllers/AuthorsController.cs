@@ -144,7 +144,7 @@ namespace BookStore_API.Controllers
         }
 
         /// <summary>
-        /// Updates and author's record.
+        /// Updates an author's record.
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="authorDTO"></param>
@@ -155,13 +155,16 @@ namespace BookStore_API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Update(int Id, [FromBody] AuthorUpdateDTO authorDTO)
         {
+            string location = GetControllerActionNames();
+
             try
             {
-                _logger.LogInfo($"Author with Id: {Id} update attempted");
+                _logger.LogInfo($"{location}: Update attempted on record with Id: {Id}.");
 
                 if (Id < 1 || authorDTO == null || Id != authorDTO.Id)
                 {
-                    _logger.LogWarn($"Author update failed with bad data");
+                    _logger.LogWarn($"{location}: Update failed with bad data - Id: {Id}.");
+
                     return BadRequest();
                 }
 
@@ -169,14 +172,15 @@ namespace BookStore_API.Controllers
 
                 if (!isExists)
                 {
-                    _logger.LogWarn($"Author with Id: {Id} was not found");
+                    _logger.LogWarn($"{location}: Failed to retrieve record with Id: {Id}.");
+
                     return NotFound();
                 }
 
-
                 if (!ModelState.IsValid)
                 {
-                    _logger.LogWarn($"Author data was incomplete");
+                    _logger.LogWarn($"{location}: Data was incomplete.");
+
                     return BadRequest(ModelState);
                 }
 
@@ -185,15 +189,16 @@ namespace BookStore_API.Controllers
 
                 if (!isSuccess)
                 {
-                    return InternalError($"Update operation failed.");
+                    return InternalError($"{location}: Update failed for record with Id: {Id}.");
                 }
 
-                _logger.LogInfo($"Author with Id: {Id} successfully updated");
+                _logger.LogInfo($"{location}: Record with Id: {Id} successfully updated.");
+
                 return NoContent();
             }
             catch (Exception e)
             {
-                return InternalError($"{e.Message} - {e.InnerException}");
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
             }
         }
 
