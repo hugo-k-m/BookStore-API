@@ -201,6 +201,58 @@ namespace BookStore_API.Controllers
             }
         }
 
+        /// <summary>
+        /// Removes an book by Id.
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        [HttpDelete("{Id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete(int Id)
+        {
+            string location = GetControllerActionNames();
+
+            try
+            {
+                _logger.LogInfo($"{location}: Delete attempted on record with Id: {Id}.");
+
+                if (Id < 1)
+                {
+                    _logger.LogWarn($"{location}: Delete failed with bad data - Id: {Id}");
+
+                    return BadRequest();
+                }
+
+                bool isExists = await _bookRepository.isExists(Id);
+
+                if (!isExists)
+                {
+                    _logger.LogWarn($"{location}: Failed to retrieve record with Id: {Id}.");
+
+                    return NotFound();
+                }
+
+                Book book = await _bookRepository.FindById(Id);            
+                bool isSuccess = await _bookRepository.Delete(book);
+
+                if (!isSuccess)
+                {
+                    return InternalError($"{location}: Delete failed for record with Id: {Id}.");
+                }
+
+                _logger.LogInfo($"{location}: Record with Id: {Id} successfully deleted.");
+
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
+            }
+        }
+
         private string GetControllerActionNames()
         {
             string controller = ControllerContext.ActionDescriptor.ControllerName;

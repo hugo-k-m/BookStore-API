@@ -152,6 +152,7 @@ namespace BookStore_API.Controllers
         [HttpPut("{Id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Update(int Id, [FromBody] AuthorUpdateDTO authorDTO)
         {
@@ -210,16 +211,20 @@ namespace BookStore_API.Controllers
         [HttpDelete("{Id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int Id)
         {
+            string location = GetControllerActionNames();
+
             try
             {
-                _logger.LogInfo($"Author with Id: {Id} delete attempted");
+                _logger.LogInfo($"{location}: Delete attempted on record with Id: {Id}.");
 
                 if (Id < 1)
                 {
-                    _logger.LogWarn($"Author delete failed with bad data");
+                    _logger.LogWarn($"{location}: Delete failed with bad data - Id: {Id}");
+
                     return BadRequest();
                 }
 
@@ -227,11 +232,12 @@ namespace BookStore_API.Controllers
 
                 if (!isExists)
                 {
-                    _logger.LogWarn($"Author with Id: {Id} was not found");
+                    _logger.LogWarn($"{location}: Failed to retrieve record with Id: {Id}.");
+
                     return NotFound();
                 }
 
-                Author author = await _authorRepository.FindById(Id);            
+                Author author = await _authorRepository.FindById(Id);
                 bool isSuccess = await _authorRepository.Delete(author);
 
                 if (!isSuccess)
@@ -240,11 +246,12 @@ namespace BookStore_API.Controllers
                 }
 
                 _logger.LogInfo($"Author with Id: {Id} successfully deleted");
+
                 return NoContent();
             }
             catch (Exception e)
             {
-                return InternalError($"{e.Message} - {e.InnerException}");
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
             }
         }
 

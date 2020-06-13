@@ -40,7 +40,7 @@ namespace BookStore_API.DTOs
         /// <summary>
         /// Gets or sets the price of this book.
         /// </summary>
-        public double? Price { get; set; }
+        public decimal? Price { get; set; }
 
         /// <summary>
         /// Gets or sets the unique identifier of the author of this book.
@@ -89,7 +89,7 @@ namespace BookStore_API.DTOs
         /// <summary>
         /// Gets or sets the price of this book.
         /// </summary>
-        public double? Price { get; set; }
+        public decimal? Price { get; set; }
 
         /// <summary>
         /// Gets or sets the unique identifier of the author of this book.
@@ -134,6 +134,6 @@ namespace BookStore_API.DTOs
         /// <summary>
         /// Gets or sets the price of this book.
         /// </summary>
-        public double? Price { get; set; }
+        public decimal? Price { get; set; }
     }
 }
