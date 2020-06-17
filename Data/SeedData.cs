@@ -22,7 +22,7 @@ namespace BookStore_API.Data
                     Email = "admin@bookstore.com"
                 };
 
-                IdentityResult result = await userManager.CreateAsync(user, "P@sw0rd");
+                IdentityResult result = await userManager.CreateAsync(user, "P@ssw0rd");
 
                 if (result.Succeeded)
                 {
@@ -38,7 +38,7 @@ namespace BookStore_API.Data
                     Email = "customer1@gmail.com"
                 };
 
-                IdentityResult result = await userManager.CreateAsync(user, "P@sw0rd");
+                IdentityResult result = await userManager.CreateAsync(user, "P@ssw0rd");
 
                 if (result.Succeeded)
                 {
@@ -54,7 +54,7 @@ namespace BookStore_API.Data
                     Email = "customer2@gmail.com"
                 };
 
-                IdentityResult result = await userManager.CreateAsync(user, "P@sw0rd");
+                IdentityResult result = await userManager.CreateAsync(user, "P@ssw0rd");
 
                 if (result.Succeeded)
                 {

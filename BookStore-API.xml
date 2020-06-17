@@ -151,6 +151,13 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:BookStore_API.Controllers.UsersController.Login(BookStore_API.DTOs.UserDTO)">
+            <summary>
+            User login endpoint.
+            </summary>
+            <param name="userDTO"></param>
+            <returns></returns>
+        </member>
         <member name="T:BookStore_API.Data.Author">
             <summary>
             Represents a single author.
@@ -431,6 +438,21 @@
         <member name="P:BookStore_API.DTOs.BookUpdateDTO.Price">
             <summary>
             Gets or sets the price of this book.
+            </summary>
+        </member>
+        <member name="T:BookStore_API.DTOs.UserDTO">
+            <summary>
+            User data transfer object.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.DTOs.UserDTO.Username">
+            <summary>
+            Gets or sets the user's username.
+            </summary>
+        </member>
+        <member name="P:BookStore_API.DTOs.UserDTO.Password">
+            <summary>
+            Gets or sets the user's password.
             </summary>
         </member>
     </members>
