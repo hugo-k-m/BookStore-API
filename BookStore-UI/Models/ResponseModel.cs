@@ -15,6 +15,7 @@
         /// <summary>
         /// Gets or sets the content of the response.
         /// </summary>
-        /// <value></value>        public string Content { get; set; }
+        /// <value></value>
+        public string Content { get; set; }
     }
 }
