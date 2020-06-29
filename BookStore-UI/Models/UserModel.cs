@@ -4,6 +4,20 @@ namespace BookStore_UI.Models
 {
     public class LoginModel
     {
+        /// <summary>
+        /// Gets or sets the user's username.
+        /// </summary>
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email Address")]
+        public string EmailAddress { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user's password.
+        /// </summary>
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
     }
 
     /// <summary>

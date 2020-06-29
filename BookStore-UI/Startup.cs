@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using BookStore_UI.Contracts;
 using BookStore_UI.Service;
 using Microsoft.AspNetCore.Builder;
@@ -23,7 +24,9 @@ namespace BookStore_UI
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddBlazoredLocalStorage();
             services.AddHttpClient();
+            services.AddScoped<JwtSecurityTokenHandler>();
             services.AddTransient<IAuthenticationRepository, AuthenticationRepository>();
         }
 

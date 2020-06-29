@@ -5,6 +5,8 @@ namespace BookStore_UI.Contracts
 {
     public interface IAuthenticationRepository
     {
-        public Task<bool> Register(RegistrationModel user);
+        Task<bool> Register(RegistrationModel user);
+        Task<bool> Login(LoginModel user);
+        Task Logout();
     }
 }
