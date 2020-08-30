@@ -54,7 +54,7 @@ namespace BookStore_UI.Service
 
             //Change auth state of application
             await ((ApiAuthenticationStateProvider)_authenticationStateProvider)
-            .LoggedIn();
+                .LoggedIn();
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
                 "bearer", token.Token
@@ -68,7 +68,7 @@ namespace BookStore_UI.Service
             await _localStorage.RemoveItemAsync("authToken");
             
             ((ApiAuthenticationStateProvider)_authenticationStateProvider)
-            .LoggedOut();
+                .LoggedOut();
         }
 
         public async Task<bool> Register(RegistrationModel user)
