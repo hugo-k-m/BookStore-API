@@ -98,7 +98,7 @@ namespace BookStore_API.Controllers
         /// <summary>
         /// Creates an author.
         /// </summary>
-        /// <param name="author"></param>
+        /// <param name="authorDTO"></param>
         /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Administrator")]
