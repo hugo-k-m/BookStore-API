@@ -108,6 +108,9 @@ namespace BookStore_API.Controllers
                     _logger.LogInfo($"{location}: {username} successfully authenticated.");
                     
                     IdentityUser user = await _userManager.FindByNameAsync(username);
+
+                    _logger.LogInfo($"{location}: Generating token");
+
                     string tokenString = await GenerateJSONWebToken(user);
 
                     return Ok(new { token = tokenString });
@@ -151,7 +154,7 @@ namespace BookStore_API.Controllers
                 _config["Jwt:Issuer"],
                 claims,
                 null,
-                expires: DateTime.Now.AddMinutes(5),
+                expires: DateTime.Now.AddHours(5),
                 signingCredentials: credentials
             );
 
