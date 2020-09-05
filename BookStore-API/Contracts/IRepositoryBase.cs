@@ -19,7 +19,7 @@ namespace BookStore_API.Contracts
         /// Returns the class record/row from the relative database table that
         /// corresponds with the given unique identifier.
         /// </summary>
-        Task<T> FindById(int Id);
+        Task<T> FindById(int id);
 
         /// <summary>
         /// Returns true if the given entity was successfully created in the
@@ -31,7 +31,7 @@ namespace BookStore_API.Contracts
          /// Checks whether or not the database contains a record corresponding
          /// with the Id input.
          /// </summary>
-         Task<bool> isExists(int Id);
+         Task<bool> isExists(int id);
 
         /// <summary>
         /// Returns true if the given entity was successfully updated in the
