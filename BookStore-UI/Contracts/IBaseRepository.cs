@@ -34,7 +34,7 @@ namespace BookStore_UI.Contracts
         /// <param name="url"></param>
         /// <param name="obj"></param>
         /// <returns></returns>
-        Task<bool> Update(string url, T obj);
+        Task<bool> Update(string url, T obj, int id);
 
         /// <summary>
         /// Removes a record from the database.

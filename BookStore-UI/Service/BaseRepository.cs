@@ -108,9 +108,9 @@ namespace BookStore_UI.Service
             return null;
         }
 
-        public async Task<bool> Update(string url, T obj)
+        public async Task<bool> Update(string url, T obj, int id)
         {
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, url);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, url+id);
 
             if (obj == null)
                 return false;
