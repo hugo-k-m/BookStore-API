@@ -6,9 +6,7 @@
 
 @if (Model == null)
 {
-    <div class="alert alert-dismissible alert-secondary">
-        Loading Data...
-    </div>
+    <LoadingMessage Message="Loading authors..." />
 }
 else
 {
@@ -46,8 +44,12 @@ else
 @code {
     private IList<Author> Model;
         
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        Model = await _repo.Get(Endpoints.AuthorsEndpoint);
+        if (firstRender)
+        {
+            Model = await _repo.Get(Endpoints.AuthorsEndpoint);
+            StateHasChanged();
+        }
     }
 }
