@@ -30,7 +30,9 @@ namespace BookStore_UI.Service
             if (obj == null)
                 return false;
 
-            request.Content = new StringContent(JsonConvert.SerializeObject(obj));
+            request.Content = new StringContent(
+                JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json"
+            );
             
             HttpClient client = _client.CreateClient();
             
@@ -49,7 +51,7 @@ namespace BookStore_UI.Service
         public async Task<bool> Delete(string url, int id)
         {
             if (id < 1)
-            return false;
+                return false;
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, url + id);
             HttpClient client = _client.CreateClient();
