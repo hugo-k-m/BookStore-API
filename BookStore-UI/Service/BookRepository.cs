@@ -5,12 +5,12 @@ using BookStore_UI.Models;
 
 namespace BookStore_UI.Service
 {
-    public class AuthorRepository : BaseRepository<Author>, IAuthorRepository
+    public class BookRepository : BaseRepository<Book>, IBookRepository
     {
         private readonly IHttpClientFactory _client;
         private readonly ILocalStorageService _localStorage;
 
-        public AuthorRepository(
+        public BookRepository(
             IHttpClientFactory client,
             ILocalStorageService localStorage
         ) : base(client, localStorage)
