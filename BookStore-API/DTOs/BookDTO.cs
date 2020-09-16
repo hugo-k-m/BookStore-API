@@ -43,7 +43,7 @@ namespace BookStore_API.DTOs
         public decimal? Price { get; set; }
 
         /// <summary>
-        /// Gets or sets the unique identifier of the author of this book.
+        /// Gets or sets the unique identifier for the author of this book.
         /// </summary>
         public int? AuthorId { get; set; }
 
@@ -116,6 +116,11 @@ namespace BookStore_API.DTOs
         public string Title { get; set; }
 
         /// <summary>
+        /// Gets or sets the ISBN for this book.
+        /// </summary>
+        public string Isbn { get; set; }
+
+        /// <summary>
         /// Gets or sets the year this book was published.
         /// </summary>
         public int? Year { get; set; }
@@ -135,5 +140,10 @@ namespace BookStore_API.DTOs
         /// Gets or sets the price of this book.
         /// </summary>
         public decimal? Price { get; set; }
+
+        /// <summary>
+        /// Gets or sets the unique identifier for the author of this book.
+        /// </summary>
+        public int? AuthorId { get; set; }
     }
 }
