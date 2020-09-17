@@ -14,7 +14,17 @@ namespace BookStore_UI.Service
         {
             _env = env;
         }
-        
+
+        public void RemoveFile(string picName)
+        {
+            var path = $"{_env.WebRootPath}\\uploads\\{picName}";
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
+
         public async Task UploadFile(IFileListEntry file, string picName)
         {
             try

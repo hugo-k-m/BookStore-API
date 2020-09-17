@@ -3,8 +3,9 @@ using BlazorInputFile;
 
 namespace BookStore_UI.Contracts
 {
-    interface IFileUpload
+    public interface IFileUpload
     {
-        public Task UploadFile(IFileListEntry file, string picName);
+        Task UploadFile(IFileListEntry file, string picName);
+        void RemoveFile(string picName);
     }
 }
