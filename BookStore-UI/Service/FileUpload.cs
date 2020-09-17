@@ -25,20 +25,19 @@ namespace BookStore_UI.Service
             }
         }
 
-        public async Task UploadFile(IFileListEntry file, string picName)
+        public void UploadFile(IFileListEntry file, MemoryStream msFile, string picName)
         {
             try
             {
-                var ms = new MemoryStream();
-                await file.Data.CopyToAsync(ms);
                 var path = $"{_env.WebRootPath}\\uploads\\{picName}";
 
                 using (FileStream fs = new FileStream(path, FileMode.Create))
                 {
-                    ms.WriteTo(fs);
+                    msFile.WriteTo(fs);
                 }
+
             }
-            catch (System.Exception)
+            catch
             {
 
                 throw;
