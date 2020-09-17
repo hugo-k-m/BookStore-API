@@ -1,6 +1,10 @@
 ﻿@page "/authors/view/{Id}"
-@inject IAuthorRepository _repo
+
 @inject NavigationManager _navManager
+
+@inject IAuthorRepository _repo
+
+@inject IToastService _toastService
 
 <h3 class="card-title">View Author Details</h3>
 <hr />
@@ -11,6 +15,7 @@
 }
 else
 {
+    _toastService.ShowInfo($"Now viewing {Model.Firstname} {Model.Lastname}.", "");
     <div class="col-md-4">
         <table class="table table-responsive">
             <tr>
@@ -60,7 +65,6 @@ else
 @code {
     [Parameter]
     public string Id { get; set; }
-
     private Author Model = new Author();
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

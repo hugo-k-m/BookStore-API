@@ -3,10 +3,13 @@
 
 @attribute [Authorize(Roles = "Administrator")]
 
-@inject IBookRepository _repo
+@inject NavigationManager _navManager
+
 @inject IAuthorRepository _authorRepo
 @inject IFileUpload _fileUpload
-@inject NavigationManager _navManager
+@inject IBookRepository _repo
+
+@inject IToastService _toastService
 
 <h3>Create Book</h3>
 
@@ -108,6 +111,7 @@
 
             if (isSuccess)
             {
+                _toastService.ShowSuccess("Book created successfully!", "");
                 BackToList();
             }
         }

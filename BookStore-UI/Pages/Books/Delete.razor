@@ -2,9 +2,12 @@
 
 @attribute [Authorize(Roles = "Administrator")]
 
-@inject IBookRepository _repo
 @inject NavigationManager _navManager
+
+@inject IBookRepository _repo
 @inject IFileUpload _fileUpload
+
+@inject IToastService _toastService
 
 <h3>Are you sure you want to delete this record?</h3>
 
@@ -16,7 +19,6 @@
 {
     <ErrorMessage Message="Something went wrong with the operation." />
 }
-
 
 @if (int.Parse(Id) < 1 || string.IsNullOrWhiteSpace(Id))
 {
@@ -109,9 +111,9 @@ else
 
         if (isSuccess)
         {
+            _toastService.ShowSuccess("Book deleted successfully!", "");
             BackToList();
         }
-
     }
 
     private void BackToList()

@@ -2,8 +2,11 @@
 
 @attribute [Authorize]
 
-@inject IBookRepository _repo
 @inject NavigationManager _navManager
+
+@inject IBookRepository _repo
+
+@inject IToastService _toastService
 
 <h3>View Book Details</h3>
 
@@ -21,6 +24,7 @@ else if (Model == null)
 }
 else
 {
+    _toastService.ShowInfo($"Now viewing {Model.Title}.", "");
     <div class="row">
         <div class="col-6">
             <table class="table table-responsive">
